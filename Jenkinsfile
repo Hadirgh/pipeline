@@ -13,14 +13,15 @@ pipeline {
         APP_ENV  = "DEV" 
     } 
     
-    stages { 
-        stage('Code Checkout') { 
-            steps { 
-                git branch: 'main', 
-                    url: 'https://github.com/Hadirgh/pipeline.git'
-                credentialsId: 'jenkinsToken'
-            } 
-        } 
+   stages {
+        stage('Checkout') {
+            steps {
+                git(
+                    branch: 'main',
+                    url: 'https://github.com/Hadirgh/pipeline.git',
+                    credentialsId: 'jenkinsToken'
+                )
+           
         
         stage('Code Build') { 
             steps { 
