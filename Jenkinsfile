@@ -21,8 +21,8 @@ pipeline {
                     url: 'https://github.com/Hadirgh/pipeline.git',
                     credentialsId: 'jenkinsToken'
                 )
-           
-        
+            }
+        }
         stage('Code Build') { 
             steps { 
                  sh 'mvn install -Dmaven.test.skip=true' 
