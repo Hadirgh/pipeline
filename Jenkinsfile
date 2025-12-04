@@ -18,6 +18,7 @@ pipeline {
             steps { 
                 git branch: 'main', 
                     url: 'https://github.com/Hadirgh/pipeline.git'
+                credentialsId: 'jenkinsToken'
             } 
         } 
         
