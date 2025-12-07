@@ -16,7 +16,16 @@ pipeline {
    stages {
         stage('Checkout') {
             steps {
-                git(
+                git( stages {
+   stage('Checkout') {
+    steps {
+        git(
+            branch: 'main',
+            url: 'https://github.com/Hadirgh/pipeline.git'
+        )
+    }
+}
+
                     branch: 'main',
                     url: 'https://github.com/Hadirgh/pipeline.git',
                     credentialsId: 'jenkinsToken'
