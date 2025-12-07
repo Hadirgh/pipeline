@@ -1,53 +1,44 @@
 pipeline { 
     agent any
-    
+
     tools { 
         maven 'Maven' 
     } 
-    
+
     options { 
         timeout(time: 10, unit: 'MINUTES') 
     } 
-    
+
     environment { 
         APP_ENV  = "DEV" 
     } 
-    
-   stages {
+
+    stages {
         stage('Checkout') {
             steps {
-                git( stages {
-   stage('Checkout') {
-    steps {
-        git(
-            branch: 'main',
-            url: 'https://github.com/Hadirgh/pipeline.git'
-        )
-    }
-}
-
+                git(
                     branch: 'main',
                     url: 'https://github.com/Hadirgh/pipeline.git',
-                    credentialsId: 'jenkinsToken'
+                    credentialsId: 'jenkinsToken' // à retirer si public
                 )
             }
         }
         stage('Code Build') { 
             steps { 
-                 sh 'mvn install -Dmaven.test.skip=true' 
+                sh 'mvn install -Dmaven.test.skip=true' 
             } 
         } 
     } 
-    
+
     post { 
         always {                                                              
-             echo "======always======"  
+            echo "======always======"  
         } 
         success { 
-             echo "=====pipeline executed successfully =====" 
+            echo "=====pipeline executed successfully =====" 
         } 
         failure { 
-             echo "======pipeline execution failed======" 
+            echo "======pipeline execution failed======" 
         } 
     } 
 }
